@@ -1,0 +1,2 @@
+# StarBeans
+A beans library
