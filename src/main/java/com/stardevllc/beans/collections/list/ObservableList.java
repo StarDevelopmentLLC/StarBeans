@@ -21,7 +21,7 @@ public interface ObservableList<E> extends ObservableCollection<E>, List<E> {
         private final ObservableList<E> list;
         private final int index;
         private final E added, removed;
-        boolean cancelled;
+        private boolean cancelled;
         
         public Change(ObservableList<E> list, int index, E added, E removed) {
             this.list = list;

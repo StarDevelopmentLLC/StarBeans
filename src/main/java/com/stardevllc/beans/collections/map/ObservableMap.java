@@ -1,37 +1,57 @@
 package com.stardevllc.beans.collections.map;
 
-import com.stardevllc.beans.collections.listener.MapChangeListener;
 import com.stardevllc.beans.Observable;
 
 import java.util.Map;
 
-/**
- * Represents a map that can be observed for changes
- *
- * @param <K> The key type
- * @param <V> The value type
- */
 public interface ObservableMap<K, V> extends Observable, Map<K, V> {
     
-    /**
-     * Adds a listener that mirrors changes in this observable map to the one passed in.
-     *
-     * @param map The map to mirror changes into
-     * @return The same mapped passed in (For inline registration)
-     */
-    <M extends Map<K, V> > M addContentMirror(M map);
+    Map<K, V> asMap();
     
-    /**
-     * Adds a change listener to this ObservableMap
-     *
-     * @param listener the listener to add
-     */
-    void addListener(MapChangeListener<K, V> listener);
+    void addChangeListener(ChangeListener<K, V> changeListener);
     
-    /**
-     * Removes the change listener from this ObservableMap
-     *
-     * @param listener The listener to remove
-     */
-    void removeListener(MapChangeListener<K, V> listener);
+    void removeChangeListener(ChangeListener<K, V> changeListener);
+    
+    @FunctionalInterface
+    interface ChangeListener<K, V> {
+        void changed(Change<K, V> change);
+    }
+    
+    final class Change<K, V> {
+        private final ObservableMap<K, V> map;
+        private final K key;
+        private final V added, removed;
+        private boolean cancelled;
+        
+        public Change(ObservableMap<K, V> map, K key, V added, V removed) {
+            this.map = map;
+            this.key = key;
+            this.added = added;
+            this.removed = removed;
+        }
+        
+        public ObservableMap<K, V> getMap() {
+            return map;
+        }
+        
+        public K getKey() {
+            return key;
+        }
+        
+        public V getAdded() {
+            return added;
+        }
+        
+        public V getRemoved() {
+            return removed;
+        }
+        
+        public boolean isCancelled() {
+            return cancelled;
+        }
+        
+        public void setCancelled(boolean cancelled) {
+            this.cancelled = cancelled;
+        }
+    }
 }

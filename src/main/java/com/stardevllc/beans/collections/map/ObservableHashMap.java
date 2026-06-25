@@ -1,68 +1,176 @@
 package com.stardevllc.beans.collections.map;
 
-import com.stardevllc.beans.collections.set.ObservableHashSet;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-/**
- * Represents an ObservableHashMap
- *
- * @param <K> The Key type
- * @param <V> The vlaue type
- */
 public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
     
     private final HashMap<K, V> backingHashMap = new HashMap<>();
     
-    /**
-     * Creates an empty observable hash map
-     */
     public ObservableHashMap() {
     }
     
-    /**
-     * Creates an observable hash map from exsting map
-     *
-     * @param map The map
-     */
     public ObservableHashMap(Map<K, V> map) {
-        if (map != null) {
-            this.backingHashMap.putAll(map);
-        }
+        this.backingHashMap.putAll(map);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    protected Map<K, V> getBackingMap() {
-        return backingHashMap;
+    public Map<K, V> asMap() {
+        return this;
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Set<K> keySet() {
-        ObservableHashSet<K> keySet = new ObservableHashSet<>(this.backingHashMap.keySet());
-        keySet.addListener(c -> {
-            if (c.removed() != null) {
-                remove(c.removed());
-            }
-        });
-        return keySet;
+    public int size() {
+        return this.backingHashMap.size();
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Set<Map.Entry<K, V>> entrySet() {
-        ObservableHashSet<Map.Entry<K, V>> entrySet = new ObservableHashSet<>();
-        for (Map.Entry<K, V> entry : this.backingHashMap.entrySet()) {
-            entrySet.add(new ObservableEntry<>(this, entry));
+    public boolean containsKey(Object key) {
+        return this.backingHashMap.containsKey(key);
+    }
+    
+    @Override
+    public boolean containsValue(Object value) {
+        return this.backingHashMap.containsValue(value);
+    }
+    
+    @Override
+    public V get(Object key) {
+        return this.backingHashMap.get(key);
+    }
+    
+    @Override
+    public @Nullable V put(K key, V value) {
+        if (handleChange(key, value, get(key))) {
+            return this.backingHashMap.put(key, value);
         }
         
-        return entrySet;
+        return null;
+    }
+    
+    @Override
+    public V remove(Object key) {
+        if (handleChange((K) key, null, get(key))) {
+            this.backingHashMap.remove(key);
+        }
+        
+        return null;
+    }
+    
+    private class KeyItr implements Iterator<K> {
+        private final Iterator<Entry<K, V>> iterator = backingHashMap.entrySet().iterator();
+        private Entry<K, V> current;
+        
+        @Override
+        public boolean hasNext() {
+            return iterator.hasNext();
+        }
+        
+        @Override
+        public K next() {
+            return (current = iterator.next()).getKey();
+        }
+        
+        @Override
+        public void remove() {
+            if (current == null) {
+                return;
+            }
+            
+            if (handleChange(current.getKey(), null, current.getValue())) {
+                iterator.remove();
+                current = null;
+            }
+        }
+    }
+    
+    private class KeySet extends AbstractSet<K> {
+        @Override
+        public Iterator<K> iterator() {
+            return new KeyItr();
+        }
+        
+        @Override
+        public int size() {
+            return ObservableHashMap.this.size();
+        }
+    }
+    
+    @Override
+    public @NotNull Set<K> keySet() {
+        return new KeySet();
+    }
+    
+    private class ValueItr implements Iterator<V> {
+        private final Iterator<Entry<K, V>> iterator = backingHashMap.entrySet().iterator();
+        
+        private Entry<K, V> current;
+        
+        @Override
+        public boolean hasNext() {
+            return this.iterator.hasNext();
+        }
+        
+        @Override
+        public V next() {
+            return (this.current = iterator.next()).getValue();
+        }
+        
+        @Override
+        public void remove() {
+            if (current == null) {
+                return;
+            }
+            
+            if (handleChange(this.current.getKey(), null, this.current.getValue())) {
+                iterator.remove();
+            }
+        }
+    }
+    
+    @Override
+    public @NotNull Collection<V> values() {
+        return new AbstractCollection<V>() {
+            @Override
+            public Iterator<V> iterator() {
+                return new ValueItr();
+            }
+            
+            @Override
+            public int size() {
+                return ObservableHashMap.this.size();
+            }
+        };
+    }
+    
+    private class EntryItr implements Iterator<Entry<K, V>> {
+        
+        private final Iterator<Entry<K, V>> iterator = backingHashMap.entrySet().iterator();
+        
+        private Entry<K, V> current;
+        
+        @Override
+        public boolean hasNext() {
+            return iterator.hasNext();
+        }
+        
+        @Override
+        public Entry<K, V> next() {
+            return current = iterator.next();
+        }
+        
+        @Override
+        public void remove() {
+            if (current == null) {
+                
+            }
+        }
+    }
+    
+    @Override
+    public @NotNull Set<Entry<K, V>> entrySet() {
+        return Set.of();
     }
 }
