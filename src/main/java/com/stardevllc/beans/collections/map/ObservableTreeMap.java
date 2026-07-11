@@ -1,19 +1,10 @@
 package com.stardevllc.beans.collections.map;
 
-import com.stardevllc.beans.collections.list.ObservableLinkedList;
-import com.stardevllc.beans.collections.listener.MapChangeListener;
-import com.stardevllc.beans.collections.set.ObservableTreeSet;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.lang.ref.WeakReference;
 import java.util.*;
 
-/**
- * Represents a TreeMap that can be observed for changes
- *
- * @param <K> The key type
- * @param <V> The value type
- */
-@SuppressWarnings({"UnnecessaryLocalVariable"})
 public class ObservableTreeMap<K extends Comparable<K>, V> extends AbstractObservableMap<K, V> implements NavigableMap<K, V> {
     
     private final TreeMap<K, V> backingTreeMap = new TreeMap<>();
@@ -35,376 +26,358 @@ public class ObservableTreeMap<K extends Comparable<K>, V> extends AbstractObser
         }
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    protected Map<K, V> getBackingMap() {
-        return backingTreeMap;
+    public Map<K, V> asMap() {
+        return this;
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> lowerEntry(K key) {
-        return new ObservableEntry<>(this, this.backingTreeMap.lowerEntry(key));
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K lowerKey(K key) {
         return this.backingTreeMap.lowerKey(key);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> floorEntry(K key) {
-        return new ObservableEntry<>(this, this.backingTreeMap.floorEntry(key));
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K floorKey(K key) {
         return this.backingTreeMap.floorKey(key);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> ceilingEntry(K key) {
-        return new ObservableEntry<>(this, this.backingTreeMap.ceilingEntry(key));
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K ceilingKey(K key) {
         return this.backingTreeMap.ceilingKey(key);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> higherEntry(K key) {
-        return new ObservableEntry<>(this, this.backingTreeMap.higherEntry(key));
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K higherKey(K key) {
         return this.backingTreeMap.higherKey(key);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> firstEntry() {
-        return new ObservableEntry<>(this, this.backingTreeMap.firstEntry());
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> lastEntry() {
-        return new ObservableEntry<>(this, this.backingTreeMap.lastEntry());
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> pollFirstEntry() {
-        Entry<K, V> entry = new ObservableEntry<>(this, this.backingTreeMap.pollFirstEntry());
-        this.handler.handleChange(this, entry.getKey(), null, entry.getValue());
-        return entry;
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Entry<K, V> pollLastEntry() {
-        Entry<K, V> entry = new ObservableEntry<>(this, this.backingTreeMap.pollLastEntry());
-        this.handler.handleChange(this, entry.getKey(), null, entry.getValue());
-        return entry;
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public NavigableMap<K, V> descendingMap() {
-        ObservableTreeMap<K, V> decendingMap = new ObservableTreeMap<>(this.backingTreeMap.descendingMap());
-        return decendingMap;
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NavigableSet<K> navigableKeySet() {
-        ObservableTreeSet<K> keySet = new ObservableTreeSet<>(this.backingTreeMap.navigableKeySet());
-        return keySet;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public NavigableSet<K> descendingKeySet() {
-        ObservableTreeSet<K> decendingKeySet = new ObservableTreeSet<>(this.backingTreeMap.descendingKeySet());
-        return decendingKeySet;
+        return null; //TODO
     }
     
-    @SuppressWarnings("DuplicatedCode")
-    private class SubMapChangeListener implements MapChangeListener<K, V> {
-        
-        private final WeakReference<ObservableTreeMap<K, V>> backingMapRef;
-        private final WeakReference<ObservableTreeMap<K, V>> subMapRef;
-        
-        private K fromKey, toKey;
-        private boolean fromInclusive, toInclusive; 
-        
-        public SubMapChangeListener() {
-            this(null, null);
-        }
-        
-        public SubMapChangeListener(ObservableTreeMap<K, V> backingMap, ObservableTreeMap<K, V> subMap) {
-            this.backingMapRef = new WeakReference<>(backingMap);
-            this.subMapRef = new WeakReference<>(subMap);
-        }
-        
-        public SubMapChangeListener(ObservableTreeMap<K, V> backingMap, ObservableTreeMap<K, V> subMap, K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) {
-            this(backingMap, subMap);
-            this.fromKey = fromKey;
-            this.fromInclusive = fromInclusive;
-            this.toKey = toKey;
-            this.toInclusive = toInclusive;
-        }
-        
-        @Override
-        public void changed(Change<K, V> c) {
-            ObservableTreeMap<K, V> backingMap = this.backingMapRef.get();
-            ObservableTreeMap<K, V> subMap = this.subMapRef.get();
-            if (backingMap == null && subMap == null) {
-                return;
-            } else if (backingMap == null) {
-                subMap.removeListener(this);
-                return;
-            } else if (subMap == null) {
-                backingMap.removeListener(this);
-                return;
-            }
-            
-            ObservableTreeMap<K, V> mapToChange;
-            if (c.map() == backingMap) {
-                mapToChange = subMap;
-            } else if (c.map() == subMap) {
-                mapToChange = backingMap;
-            } else {
-                return;
-            }
-            
-            if (c.added() != null && c.removed() != null) {
-                mapToChange.getBackingMap().remove(c.key());
-                mapToChange.getBackingMap().put(c.key(), c.added());
-            } else if (c.added() != null) {
-                mapToChange.getBackingMap().put(c.key(), c.added());
-            } else if (c.removed() != null) {
-                mapToChange.getBackingMap().remove(c.key());
-            }
-        }
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public NavigableMap<K, V> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.subMap(fromKey, fromInclusive, toKey, toInclusive));
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, fromKey, fromInclusive, toKey, toInclusive);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public NavigableMap<K, V> headMap(K toKey, boolean inclusive) {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.headMap(toKey, inclusive));
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, null, true, toKey, inclusive);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public NavigableMap<K, V> tailMap(K fromKey, boolean inclusive) {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.tailMap(fromKey, inclusive));
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, fromKey, inclusive, null, false);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
+        return null; //TODO
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Comparator<? super K> comparator() {
         return this.backingTreeMap.comparator();
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public SortedMap<K, V> subMap(K fromKey, K toKey) {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.subMap(fromKey, toKey));
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, fromKey, true, toKey, false);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
+        return subMap(fromKey, true, toKey, false);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public SortedMap<K, V> headMap(K toKey) {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.headMap(toKey));
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, null, true, toKey, false);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
+        return headMap(toKey, false);
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public SortedMap<K, V> tailMap(K fromKey) {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.tailMap(fromKey));
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, fromKey, true, null, false);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
+        return tailMap(fromKey, true);
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public NavigableMap<K, V> reversed() {
-        ObservableTreeMap<K, V> subMap = new ObservableTreeMap<>(this.backingTreeMap.reversed());
-        SubMapChangeListener listener = new SubMapChangeListener(this, subMap, null, false, null, false);
-        subMap.addListener(listener);
-        this.addListener(listener);
-        return subMap;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K firstKey() {
         return this.backingTreeMap.firstKey();
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public K lastKey() {
         return this.backingTreeMap.lastKey();
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Set<K> keySet() {
-        ObservableTreeSet<K> keySet = new ObservableTreeSet<>(this.backingTreeMap.keySet());
-        keySet.addListener(c -> {
-            if (c.added() != null) {
-                put(c.added(), null);
-            } else if (c.removed() != null) {
-                remove(c.removed());
+    public int size() {
+        return this.backingTreeMap.size();
+    }
+    
+    @Override
+    public boolean containsKey(Object key) {
+        return this.backingTreeMap.containsKey(key);
+    }
+    
+    @Override
+    public boolean containsValue(Object value) {
+        return this.backingTreeMap.containsValue(value);
+    }
+    
+    @Override
+    public V get(Object key) {
+        return this.backingTreeMap.get(key);
+    }
+    
+    @Override
+    public @Nullable V put(K key, V value) {
+        V v = get(key);
+        if (handleChange(key, value, v)) {
+            return this.backingTreeMap.put(key, value);
+        }
+        
+        return null;
+    }
+    
+    @Override
+    public V remove(Object key) {
+        V v = get(key);
+        if (handleChange((K) key, null, v)) {
+            return this.backingTreeMap.remove(key);
+        }
+        
+        return null;
+    }
+    
+    @Override
+    public @NotNull Set<K> keySet() {
+        return navigableKeySet();
+    }
+    
+    private class ValueItr implements Iterator<V> {
+        
+        private final EntryItr iterator = new EntryItr();
+        
+        @Override
+        public boolean hasNext() {
+            return iterator.hasNext();
+        }
+        
+        @Override
+        public V next() {
+            return iterator.next().getValue();
+        }
+        
+        @Override
+        public void remove() {
+            iterator.remove();
+        }
+    }
+    
+    private class Values extends AbstractCollection<V> {
+        
+        @Override
+        public Iterator<V> iterator() {
+            return new ValueItr();
+        }
+        
+        @Override
+        public int size() {
+            return backingTreeMap.size();
+        }
+    }
+    
+    @Override
+    public @NotNull Collection<V> values() {
+        return new Values();
+    }
+    
+    private class EntryItr implements Iterator<Entry<K, V>> {
+        
+        private final Iterator<Entry<K, V>> iterator = backingTreeMap.entrySet().iterator();
+        
+        private Entry<K, V> current;
+        
+        @Override
+        public boolean hasNext() {
+            return iterator.hasNext();
+        }
+        
+        @Override
+        public Entry<K, V> next() {
+            return current = iterator.next();
+        }
+        
+        @Override
+        public void remove() {
+            if (current == null) {
+                return;
             }
-        });
-        return keySet;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Collection<V> values() {
-        ObservableLinkedList<V> values = new ObservableLinkedList<>(this.backingTreeMap.values());
-        values.addChangeListener(c -> {
-            if (c.removed() != null) {
-                this.backingTreeMap.values().remove(c.removed());
+            
+            if (handleChange(current.getKey(), null, current.getValue())) {
+                iterator.remove();
+                current = null;
             }
-        });
-        return values;
+        }
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<Entry<K, V>> entrySet() {
-        ObservableTreeSet<Entry<K, V>> entrySet = new ObservableTreeSet<>();
-        for (Entry<K, V> entry : this.backingTreeMap.entrySet()) {
-            entrySet.add(new ObservableEntry<>(this, entry));
+    private class EntrySet extends AbstractSet<Entry<K, V>> {
+        
+        @Override
+        public Iterator<Entry<K, V>> iterator() {
+            return new EntryItr();
         }
-        return entrySet;
+        
+        @Override
+        public int size() {
+            return backingTreeMap.size();
+        }
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public V putFirst(K k, V v) {
-        V r = this.backingTreeMap.putFirst(k, v);
-        boolean cancelled = this.handler.handleChange(this, k, v, r);
-        if (cancelled) {
-            this.backingTreeMap.putFirst(k, r);
-            return null;
-        }
-        return r;
+    public @NotNull Set<Entry<K, V>> entrySet() {
+        return new EntrySet();
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public V putLast(K k, V v) {
-        V r = this.backingTreeMap.putLast(k, v);
-        boolean cancelled = this.handler.handleChange(this, k, v, r);
-        if (cancelled) {
-            this.backingTreeMap.putLast(k, r);
-            return null;
+    private class KeySet extends AbstractSet<K> implements NavigableSet<K> {
+        
+        private final NavigableSet<K> keySet = backingTreeMap.navigableKeySet();
+        
+        @Override
+        public @Nullable K lower(K k) {
+            return keySet.lower(k);
         }
-        return r;
+        
+        @Override
+        public @Nullable K floor(K k) {
+            return keySet.floor(k);
+        }
+        
+        @Override
+        public @Nullable K ceiling(K k) {
+            return keySet.ceiling(k);
+        }
+        
+        @Override
+        public @Nullable K higher(K k) {
+            return keySet.higher(k);
+        }
+        
+        @Override
+        public @Nullable K pollFirst() {
+            return null; //TODO
+        }
+        
+        @Override
+        public @Nullable K pollLast() {
+            return null; //TODO
+        }
+        
+        @Override
+        public Iterator<K> iterator() {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull NavigableSet<K> descendingSet() {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull Iterator<K> descendingIterator() {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull NavigableSet<K> subSet(K fromElement, boolean fromInclusive, K toElement, boolean toInclusive) {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull NavigableSet<K> headSet(K toElement, boolean inclusive) {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull NavigableSet<K> tailSet(K fromElement, boolean inclusive) {
+            return null; //TODO
+        }
+        
+        @Override
+        public @Nullable Comparator<? super K> comparator() {
+            return keySet.comparator();
+        }
+        
+        @Override
+        public @NotNull SortedSet<K> subSet(K fromElement, K toElement) {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull SortedSet<K> headSet(K toElement) {
+            return null; //TODO
+        }
+        
+        @Override
+        public @NotNull SortedSet<K> tailSet(K fromElement) {
+            return null; //TODO
+        }
+        
+        @Override
+        public K first() {
+            return keySet.first();
+        }
+        
+        @Override
+        public K last() {
+            return keySet.last();
+        }
+        
+        @Override
+        public int size() {
+            return backingTreeMap.size();
+        }
+    }
+    
+    @Override
+    public NavigableSet<K> navigableKeySet() {
+        return new KeySet();
     }
 }

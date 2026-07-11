@@ -1,8 +1,5 @@
 package com.stardevllc.beans.collections.map;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
 import java.util.*;
 
 public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
@@ -42,7 +39,7 @@ public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
     }
     
     @Override
-    public @Nullable V put(K key, V value) {
+    public V put(K key, V value) {
         if (handleChange(key, value, get(key))) {
             return this.backingHashMap.put(key, value);
         }
@@ -60,8 +57,7 @@ public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
     }
     
     private class KeyItr implements Iterator<K> {
-        private final Iterator<Entry<K, V>> iterator = backingHashMap.entrySet().iterator();
-        private Entry<K, V> current;
+        private final EntryItr iterator = new EntryItr();
         
         @Override
         public boolean hasNext() {
@@ -70,19 +66,12 @@ public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
         
         @Override
         public K next() {
-            return (current = iterator.next()).getKey();
+            return iterator.next().getKey();
         }
         
         @Override
         public void remove() {
-            if (current == null) {
-                return;
-            }
-            
-            if (handleChange(current.getKey(), null, current.getValue())) {
-                iterator.remove();
-                current = null;
-            }
+            iterator.remove();
         }
     }
     
@@ -99,40 +88,32 @@ public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
     }
     
     @Override
-    public @NotNull Set<K> keySet() {
+    public Set<K> keySet() {
         return new KeySet();
     }
     
     private class ValueItr implements Iterator<V> {
-        private final Iterator<Entry<K, V>> iterator = backingHashMap.entrySet().iterator();
-        
-        private Entry<K, V> current;
+        private final EntryItr iterator = new EntryItr();
         
         @Override
         public boolean hasNext() {
-            return this.iterator.hasNext();
+            return iterator.hasNext();
         }
         
         @Override
         public V next() {
-            return (this.current = iterator.next()).getValue();
+            return iterator.next().getValue();
         }
         
         @Override
         public void remove() {
-            if (current == null) {
-                return;
-            }
-            
-            if (handleChange(this.current.getKey(), null, this.current.getValue())) {
-                iterator.remove();
-            }
+            iterator.remove();
         }
     }
     
     @Override
-    public @NotNull Collection<V> values() {
-        return new AbstractCollection<V>() {
+    public Collection<V> values() {
+        return new AbstractCollection<>() {
             @Override
             public Iterator<V> iterator() {
                 return new ValueItr();
@@ -146,7 +127,6 @@ public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
     }
     
     private class EntryItr implements Iterator<Entry<K, V>> {
-        
         private final Iterator<Entry<K, V>> iterator = backingHashMap.entrySet().iterator();
         
         private Entry<K, V> current;
@@ -164,13 +144,31 @@ public class ObservableHashMap<K, V> extends AbstractObservableMap<K, V> {
         @Override
         public void remove() {
             if (current == null) {
-                
+                return;
+            }
+            
+            if (handleChange(current.getKey(), null, current.getValue())) {
+                iterator.remove();
+                current = null;
             }
         }
     }
     
+    protected class EntrySet extends AbstractSet<Entry<K, V>> {
+        
+        @Override
+        public Iterator<Entry<K, V>> iterator() {
+            return new EntryItr();
+        }
+        
+        @Override
+        public int size() {
+            return ObservableHashMap.this.size();
+        }
+    }
+    
     @Override
-    public @NotNull Set<Entry<K, V>> entrySet() {
-        return Set.of();
+    public Set<Entry<K, V>> entrySet() {
+        return new EntrySet();
     }
 }
