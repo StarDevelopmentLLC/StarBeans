@@ -1,6 +1,6 @@
 package com.stardevllc.beans.immutable;
 
-import com.stardevllc.beans.Value;
+import com.stardevllc.starlib.values.Value;
 
 public final class ImmutableLong implements Value<Long> {
     

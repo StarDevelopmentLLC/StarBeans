@@ -1,9 +1,9 @@
 package com.stardevllc.beans.property;
 
-import com.stardevllc.beans.ObservableValue;
-import com.stardevllc.beans.Property;
-import com.stardevllc.beans.observable.listener.ChangeListener;
-import com.stardevllc.beans.observable.listener.InvalidationListener;
+import com.stardevllc.starlib.values.ObservableValue;
+import com.stardevllc.starlib.values.Property;
+import com.stardevllc.starlib.values.listener.ChangeListener;
+import com.stardevllc.starlib.values.listener.InvalidationListener;
 
 import java.util.ArrayList;
 import java.util.List;

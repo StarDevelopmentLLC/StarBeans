@@ -1,6 +1,6 @@
 package com.stardevllc.beans.mutable;
 
-import com.stardevllc.beans.MutableValue;
+import com.stardevllc.starlib.values.MutableValue;
 
 public class MutableFloat implements MutableValue<Float> {
     

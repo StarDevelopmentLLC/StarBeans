@@ -1,6 +1,6 @@
 package com.stardevllc.beans.immutable;
 
-import com.stardevllc.beans.Value;
+import com.stardevllc.starlib.values.Value;
 
 import java.util.UUID;
 
@@ -30,6 +30,10 @@ public final class ImmutableUUID implements Value<UUID> {
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
+        }
+        
+        if (!(obj instanceof ImmutableUUID || obj instanceof UUID)) {
+            return false;
         }
         
         if (value == obj) {
