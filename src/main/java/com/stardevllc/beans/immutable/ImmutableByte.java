@@ -1,8 +1,8 @@
 package com.stardevllc.beans.immutable;
 
-import com.stardevllc.starlib.values.Value;
+import com.stardevllc.beans.value.ByteValue;
 
-public final class ImmutableByte implements Value<Byte> {
+public final class ImmutableByte implements ByteValue {
     
     public static ImmutableByte of(byte value) {
         return new ImmutableByte(value);
@@ -30,10 +30,10 @@ public final class ImmutableByte implements Value<Byte> {
     
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Byte v) {
-            return value == v;
-        }
-        
-        return this == obj;
+        return switch(obj) {
+            case Byte b -> get() == b;
+            case ByteValue bv -> get() == bv.get();
+            default -> false;
+        };
     }
 }

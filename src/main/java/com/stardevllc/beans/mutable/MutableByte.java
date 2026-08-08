@@ -1,8 +1,9 @@
 package com.stardevllc.beans.mutable;
 
+import com.stardevllc.beans.value.ByteValue;
 import com.stardevllc.starlib.values.MutableValue;
 
-public class MutableByte implements MutableValue<Byte> {
+public class MutableByte implements ByteValue, MutableValue<Byte> {
     
     public static MutableByte of() {
         return new MutableByte();
@@ -45,10 +46,10 @@ public class MutableByte implements MutableValue<Byte> {
     
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Byte v) {
-            return value == v;
-        }
-        
-        return this == obj;
+        return switch(obj) {
+            case Byte b -> get() == b;
+            case ByteValue bv -> get() == bv.get();
+            default -> false;
+        };
     }
 }
