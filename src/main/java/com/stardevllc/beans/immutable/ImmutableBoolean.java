@@ -1,11 +1,8 @@
 package com.stardevllc.beans.immutable;
 
-import com.stardevllc.starlib.values.Value;
+import com.stardevllc.beans.value.BooleanValue;
 
-public final class ImmutableBoolean implements Value<Boolean> {
-    
-    public static final ImmutableBoolean TRUE = new ImmutableBoolean(true);
-    public static final ImmutableBoolean FALSE = new ImmutableBoolean(false);
+public final class ImmutableBoolean implements BooleanValue {
     
     public static ImmutableBoolean of(boolean value) {
         return new ImmutableBoolean(value);
@@ -22,6 +19,41 @@ public final class ImmutableBoolean implements Value<Boolean> {
     }
     
     @Override
+    public ImmutableBoolean and(BooleanValue other) {
+        return new ImmutableBoolean(get() && other.get());
+    }
+    
+    @Override
+    public ImmutableBoolean and(boolean b) {
+        return new ImmutableBoolean(get() && b);
+    }
+    
+    @Override
+    public ImmutableBoolean or(BooleanValue other) {
+        return new ImmutableBoolean(get() || other.get());
+    }
+    
+    @Override
+    public ImmutableBoolean or(boolean b) {
+        return new ImmutableBoolean(get() || b);
+    }
+    
+    @Override
+    public ImmutableBoolean not() {
+        return new ImmutableBoolean(!get());
+    }
+    
+    @Override
+    public ImmutableBoolean xor(BooleanValue other) {
+        return new ImmutableBoolean(get() ^ other.get());
+    }
+    
+    @Override
+    public ImmutableBoolean xor(boolean b) {
+        return new ImmutableBoolean(get() ^ b);
+    }
+    
+    @Override
     public Boolean getValue() {
         return get();
     }
@@ -33,10 +65,10 @@ public final class ImmutableBoolean implements Value<Boolean> {
     
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Boolean bool) {
-            return value == bool;
-        }
-        
-        return this == obj;
+        return switch (obj) {
+            case Boolean v -> value == v;
+            case BooleanValue bv -> this.value == bv.get();
+            case null, default -> false;
+        };
     }
 }
