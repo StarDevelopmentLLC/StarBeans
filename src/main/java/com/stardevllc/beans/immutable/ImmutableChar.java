@@ -1,8 +1,8 @@
 package com.stardevllc.beans.immutable;
 
-import com.stardevllc.starlib.values.Value;
+import com.stardevllc.beans.value.CharValue;
 
-public final class ImmutableChar implements Value<Character> {
+public final class ImmutableChar implements CharValue {
     
     public static ImmutableChar of(char value) {
         return new ImmutableChar(value);
@@ -30,10 +30,10 @@ public final class ImmutableChar implements Value<Character> {
     
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Character v) {
-            return value == v;
-        }
-        
-        return this == obj;
+        return switch(obj) {
+            case Character c -> get() == c;
+            case CharValue cv -> get() == cv.get();
+            default -> false;
+        };
     }
 }

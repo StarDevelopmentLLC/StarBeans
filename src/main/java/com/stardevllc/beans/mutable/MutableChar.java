@@ -1,8 +1,9 @@
 package com.stardevllc.beans.mutable;
 
+import com.stardevllc.beans.value.CharValue;
 import com.stardevllc.starlib.values.MutableValue;
 
-public class MutableChar implements MutableValue<Character> {
+public class MutableChar implements CharValue, MutableValue<Character> {
     
     public static MutableChar of() {
         return new MutableChar();
@@ -45,10 +46,10 @@ public class MutableChar implements MutableValue<Character> {
     
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Character v) {
-            return value == v;
-        }
-        
-        return this == obj;
+        return switch(obj) {
+            case Character c -> get() == c;
+            case CharValue cv -> get() == cv.get();
+            default -> false;
+        };
     }
 }
