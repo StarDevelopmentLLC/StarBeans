@@ -1,16 +1,16 @@
 package com.stardevllc.beans.value;
 
-public interface ByteValue extends NumberValue<Byte> {
-    byte get();
+public interface IntValue extends NumberValue<Integer> {
+    int get();
     
     @Override
     default byte byteValue() {
-        return get();
+        return (byte) get();
     }
     
     @Override
     default short shortValue() {
-        return get();
+        return (short) get();
     }
     
     @Override
