@@ -1,8 +1,9 @@
 package com.stardevllc.beans.mutable;
 
+import com.stardevllc.beans.value.ShortValue;
 import com.stardevllc.starlib.values.MutableValue;
 
-public class MutableShort implements MutableValue<Short> {
+public class MutableShort implements ShortValue, MutableValue<Short> {
     
     public static MutableShort of() {
         return new MutableShort();
@@ -31,6 +32,54 @@ public class MutableShort implements MutableValue<Short> {
     
     public short get() {
         return value;
+    }
+    
+    @Override
+    public ShortValue plus(byte other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue plus(short other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue minus(byte other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue minus(short other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue multiply(byte other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue multiply(short other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue divide(byte other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public ShortValue divide(short other) {
+        this.value /= other;
+        return this;
     }
     
     @Override
