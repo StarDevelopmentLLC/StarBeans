@@ -1,8 +1,9 @@
 package com.stardevllc.beans.mutable;
 
+import com.stardevllc.beans.value.LongValue;
 import com.stardevllc.starlib.values.MutableValue;
 
-public class MutableLong implements MutableValue<Long> {
+public class MutableLong implements LongValue, MutableValue<Long> {
     
     public static MutableLong of() {
         return new MutableLong();
@@ -22,6 +23,102 @@ public class MutableLong implements MutableValue<Long> {
     
     public void set(long value) {
         this.value = value;
+    }
+    
+    @Override
+    public LongValue plus(byte other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public LongValue plus(short other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public LongValue plus(int other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public LongValue plus(long other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public LongValue minus(byte other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue minus(short other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue minus(int other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue minus(long other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue multiply(byte other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue multiply(short other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue multiply(int other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue multiply(long other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue divide(byte other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue divide(short other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue divide(int other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public LongValue divide(long other) {
+        this.value /= other;
+        return this;
     }
     
     @Override
