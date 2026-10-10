@@ -19,6 +19,26 @@ public final class ImmutableByte implements ByteValue {
     }
     
     @Override
+    public ByteValue plus(byte other) {
+        return new ImmutableByte((byte) (this.value + other));
+    }
+    
+    @Override
+    public ByteValue minus(byte other) {
+        return new ImmutableByte((byte) (this.value - other));
+    }
+    
+    @Override
+    public ByteValue multiply(byte other) {
+        return new ImmutableByte((byte) (this.value * other));
+    }
+    
+    @Override
+    public ByteValue divide(byte other) {
+        return new ImmutableByte((byte) (this.value / other));
+    }
+    
+    @Override
     public Byte getValue() {
         return get();
     }

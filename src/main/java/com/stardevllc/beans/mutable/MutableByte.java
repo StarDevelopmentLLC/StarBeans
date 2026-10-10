@@ -21,6 +21,30 @@ public class MutableByte implements ByteValue, MutableValue<Byte> {
         this.value = value;
     }
     
+    @Override
+    public ByteValue plus(byte other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public ByteValue minus(byte other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public ByteValue multiply(byte other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public ByteValue divide(byte other) {
+        this.value /= other;
+        return this;
+    }
+    
     public void set(byte value) {
         this.value = value;
     }
