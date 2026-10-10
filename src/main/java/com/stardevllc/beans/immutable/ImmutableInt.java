@@ -1,8 +1,8 @@
 package com.stardevllc.beans.immutable;
 
-import com.stardevllc.starlib.values.Value;
+import com.stardevllc.beans.value.IntValue;
 
-public final class ImmutableInt implements Value<Integer> {
+public final class ImmutableInt implements IntValue {
     
     public static ImmutableInt of(int value) {
         return new ImmutableInt(value);
@@ -21,6 +21,66 @@ public final class ImmutableInt implements Value<Integer> {
     @Override
     public Integer getValue() {
         return get();
+    }
+    
+    @Override
+    public IntValue plus(byte other) {
+        return new ImmutableInt(this.value + other);
+    }
+    
+    @Override
+    public IntValue plus(short other) {
+        return new ImmutableInt(this.value + other);
+    }
+    
+    @Override
+    public IntValue plus(int other) {
+        return new ImmutableInt(this.value + other);
+    }
+    
+    @Override
+    public IntValue minus(byte other) {
+        return new ImmutableInt(this.value - other);
+    }
+    
+    @Override
+    public IntValue minus(short other) {
+        return new ImmutableInt(this.value - other);
+    }
+    
+    @Override
+    public IntValue minus(int other) {
+        return new ImmutableInt(this.value - other);
+    }
+    
+    @Override
+    public IntValue multiply(byte other) {
+        return new ImmutableInt(this.value * other);
+    }
+    
+    @Override
+    public IntValue multiply(short other) {
+        return new ImmutableInt(this.value * other);
+    }
+    
+    @Override
+    public IntValue multiply(int other) {
+        return new ImmutableInt(this.value * other);
+    }
+    
+    @Override
+    public IntValue divide(byte other) {
+        return new ImmutableInt(this.value / other);
+    }
+    
+    @Override
+    public IntValue divide(short other) {
+        return new ImmutableInt(this.value / other);
+    }
+    
+    @Override
+    public IntValue divide(int other) {
+        return new ImmutableInt(this.value / other);
     }
     
     @Override

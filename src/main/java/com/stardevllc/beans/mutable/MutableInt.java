@@ -1,8 +1,9 @@
 package com.stardevllc.beans.mutable;
 
+import com.stardevllc.beans.value.IntValue;
 import com.stardevllc.starlib.values.MutableValue;
 
-public class MutableInt implements MutableValue<Integer> {
+public class MutableInt implements IntValue, MutableValue<Integer> {
     
     public static MutableInt of() {
         return new MutableInt();
@@ -22,6 +23,78 @@ public class MutableInt implements MutableValue<Integer> {
     
     public void set(int value) {
         this.value = value;
+    }
+    
+    @Override
+    public IntValue plus(byte other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public IntValue plus(short other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public IntValue plus(int other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public IntValue minus(byte other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue minus(short other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue minus(int other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue multiply(byte other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue multiply(short other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue multiply(int other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue divide(byte other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue divide(short other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public IntValue divide(int other) {
+        this.value /= other;
+        return this;
     }
     
     @Override
