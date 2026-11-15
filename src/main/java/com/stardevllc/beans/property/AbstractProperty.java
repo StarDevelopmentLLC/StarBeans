@@ -43,9 +43,7 @@ public abstract class AbstractProperty<T> implements Property<T> {
     
     @Override
     public void bind(ObservableValue<T> other) {
-        if (this.boundValue != null && this.boundChangeListener != null) {
-            this.boundValue.removeChangeListener(this.boundChangeListener);
-        }
+        unbind();
         
         this.boundValue = other;
         this.boundChangeListener = (v, o, n) -> setValue(n);
@@ -63,6 +61,9 @@ public abstract class AbstractProperty<T> implements Property<T> {
     
     @Override
     public void unbind() {
+        if (this.boundValue != null && this.boundChangeListener != null) {
+            this.boundValue.removeChangeListener(this.boundChangeListener);
+        }
         this.boundValue = null;
     }
     
