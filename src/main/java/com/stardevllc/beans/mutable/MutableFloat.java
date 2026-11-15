@@ -1,8 +1,9 @@
 package com.stardevllc.beans.mutable;
 
+import com.stardevllc.beans.value.FloatValue;
 import com.stardevllc.starlib.values.MutableValue;
 
-public class MutableFloat implements MutableValue<Float> {
+public class MutableFloat implements MutableValue<Float>, FloatValue {
     
     public static MutableFloat of() {
         return new MutableFloat();
@@ -50,5 +51,125 @@ public class MutableFloat implements MutableValue<Float> {
         }
         
         return this == obj;
+    }
+    
+    @Override
+    public FloatValue plus(byte other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue plus(short other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue plus(int other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue plus(long other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue plus(float other) {
+        this.value += other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue minus(byte other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue minus(short other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue minus(int other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue minus(long other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue minus(float other) {
+        this.value -= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue multiply(byte other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue multiply(short other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue multiply(int other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue multiply(long other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue multiply(float other) {
+        this.value *= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue divide(byte other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue divide(short other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue divide(int other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue divide(long other) {
+        this.value /= other;
+        return this;
+    }
+    
+    @Override
+    public FloatValue divide(float other) {
+        this.value /= other;
+        return this;
     }
 }
