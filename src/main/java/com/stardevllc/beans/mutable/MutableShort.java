@@ -35,49 +35,49 @@ public class MutableShort implements ShortValue, MutableValue<Short> {
     }
     
     @Override
-    public ShortValue plus(byte other) {
+    public MutableShort plus(byte other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public ShortValue plus(short other) {
+    public MutableShort plus(short other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public ShortValue minus(byte other) {
+    public MutableShort minus(byte other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public ShortValue minus(short other) {
+    public MutableShort minus(short other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public ShortValue multiply(byte other) {
+    public MutableShort multiply(byte other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public ShortValue multiply(short other) {
+    public MutableShort multiply(short other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public ShortValue divide(byte other) {
+    public MutableShort divide(byte other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public ShortValue divide(short other) {
+    public MutableShort divide(short other) {
         this.value /= other;
         return this;
     }

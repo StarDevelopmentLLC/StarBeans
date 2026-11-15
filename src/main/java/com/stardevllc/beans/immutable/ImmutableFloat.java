@@ -15,102 +15,102 @@ public final class ImmutableFloat implements FloatValue {
     }
     
     @Override
-    public FloatValue plus(byte other) {
+    public ImmutableFloat plus(byte other) {
         return new ImmutableFloat(this.value + other);
     }
     
     @Override
-    public FloatValue plus(short other) {
+    public ImmutableFloat plus(short other) {
         return new ImmutableFloat(this.value + other);
     }
     
     @Override
-    public FloatValue plus(int other) {
+    public ImmutableFloat plus(int other) {
         return new ImmutableFloat(this.value + other);
     }
     
     @Override
-    public FloatValue plus(long other) {
+    public ImmutableFloat plus(long other) {
         return new ImmutableFloat(this.value + other);
     }
     
     @Override
-    public FloatValue plus(float other) {
+    public ImmutableFloat plus(float other) {
         return new ImmutableFloat(this.value + other);
     }
     
     @Override
-    public FloatValue minus(byte other) {
+    public ImmutableFloat minus(byte other) {
         return new ImmutableFloat(this.value - other);
     }
     
     @Override
-    public FloatValue minus(short other) {
+    public ImmutableFloat minus(short other) {
         return new ImmutableFloat(this.value - other);
     }
     
     @Override
-    public FloatValue minus(int other) {
+    public ImmutableFloat minus(int other) {
         return new ImmutableFloat(this.value - other);
     }
     
     @Override
-    public FloatValue minus(long other) {
+    public ImmutableFloat minus(long other) {
         return new ImmutableFloat(this.value - other);
     }
     
     @Override
-    public FloatValue minus(float other) {
+    public ImmutableFloat minus(float other) {
         return new ImmutableFloat(this.value - other);
     }
     
     @Override
-    public FloatValue multiply(byte other) {
+    public ImmutableFloat multiply(byte other) {
         return new ImmutableFloat(this.value * other);
     }
     
     @Override
-    public FloatValue multiply(short other) {
+    public ImmutableFloat multiply(short other) {
         return new ImmutableFloat(this.value * other);
     }
     
     @Override
-    public FloatValue multiply(int other) {
+    public ImmutableFloat multiply(int other) {
         return new ImmutableFloat(this.value * other);
     }
     
     @Override
-    public FloatValue multiply(long other) {
+    public ImmutableFloat multiply(long other) {
         return new ImmutableFloat(this.value * other);
     }
     
     @Override
-    public FloatValue multiply(float other) {
+    public ImmutableFloat multiply(float other) {
         return new ImmutableFloat(this.value * other);
     }
     
     @Override
-    public FloatValue divide(byte other) {
+    public ImmutableFloat divide(byte other) {
         return new ImmutableFloat(this.value / other);
     }
     
     @Override
-    public FloatValue divide(short other) {
+    public ImmutableFloat divide(short other) {
         return new ImmutableFloat(this.value / other);
     }
     
     @Override
-    public FloatValue divide(int other) {
+    public ImmutableFloat divide(int other) {
         return new ImmutableFloat(this.value / other);
     }
     
     @Override
-    public FloatValue divide(long other) {
+    public ImmutableFloat divide(long other) {
         return new ImmutableFloat(this.value / other);
     }
     
     @Override
-    public FloatValue divide(float other) {
+    public ImmutableFloat divide(float other) {
         return new ImmutableFloat(this.value / other);
     }
     

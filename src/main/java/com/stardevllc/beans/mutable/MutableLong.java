@@ -26,97 +26,97 @@ public class MutableLong implements LongValue, MutableValue<Long> {
     }
     
     @Override
-    public LongValue plus(byte other) {
+    public MutableLong plus(byte other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public LongValue plus(short other) {
+    public MutableLong plus(short other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public LongValue plus(int other) {
+    public MutableLong plus(int other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public LongValue plus(long other) {
+    public MutableLong plus(long other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public LongValue minus(byte other) {
+    public MutableLong minus(byte other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public LongValue minus(short other) {
+    public MutableLong minus(short other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public LongValue minus(int other) {
+    public MutableLong minus(int other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public LongValue minus(long other) {
+    public MutableLong minus(long other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public LongValue multiply(byte other) {
+    public MutableLong multiply(byte other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public LongValue multiply(short other) {
+    public MutableLong multiply(short other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public LongValue multiply(int other) {
+    public MutableLong multiply(int other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public LongValue multiply(long other) {
+    public MutableLong multiply(long other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public LongValue divide(byte other) {
+    public MutableLong divide(byte other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public LongValue divide(short other) {
+    public MutableLong divide(short other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public LongValue divide(int other) {
+    public MutableLong divide(int other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public LongValue divide(long other) {
+    public MutableLong divide(long other) {
         this.value /= other;
         return this;
     }

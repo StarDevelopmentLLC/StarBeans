@@ -19,42 +19,42 @@ public final class ImmutableShort implements ShortValue {
     }
     
     @Override
-    public ShortValue plus(byte other) {
+    public ImmutableShort plus(byte other) {
         return new ImmutableShort((short) (this.value + other));
     }
     
     @Override
-    public ShortValue plus(short other) {
+    public ImmutableShort plus(short other) {
         return new ImmutableShort((short) (this.value + other));
     }
     
     @Override
-    public ShortValue minus(byte other) {
+    public ImmutableShort minus(byte other) {
         return new ImmutableShort((short) (this.value - other));
     }
     
     @Override
-    public ShortValue minus(short other) {
+    public ImmutableShort minus(short other) {
         return new ImmutableShort((short) (this.value - other));
     }
     
     @Override
-    public ShortValue multiply(byte other) {
+    public ImmutableShort multiply(byte other) {
         return new ImmutableShort((short) (this.value * other));
     }
     
     @Override
-    public ShortValue multiply(short other) {
+    public ImmutableShort multiply(short other) {
         return new ImmutableShort((short) (this.value * other));
     }
     
     @Override
-    public ShortValue divide(byte other) {
+    public ImmutableShort divide(byte other) {
         return new ImmutableShort((short) (this.value / other));
     }
     
     @Override
-    public ShortValue divide(short other) {
+    public ImmutableShort divide(short other) {
         return new ImmutableShort((short) (this.value / other));
     }
     

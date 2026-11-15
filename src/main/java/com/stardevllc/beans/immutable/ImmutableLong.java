@@ -19,82 +19,82 @@ public final class ImmutableLong implements LongValue {
     }
     
     @Override
-    public LongValue plus(byte other) {
+    public ImmutableLong plus(byte other) {
         return new ImmutableLong(this.value + other);
     }
     
     @Override
-    public LongValue plus(short other) {
+    public ImmutableLong plus(short other) {
         return new ImmutableLong(this.value + other);
     }
     
     @Override
-    public LongValue plus(int other) {
+    public ImmutableLong plus(int other) {
         return new ImmutableLong(this.value + other);
     }
     
     @Override
-    public LongValue plus(long other) {
+    public ImmutableLong plus(long other) {
         return new ImmutableLong(this.value + other);
     }
     
     @Override
-    public LongValue minus(byte other) {
+    public ImmutableLong minus(byte other) {
         return new ImmutableLong(this.value - other);
     }
     
     @Override
-    public LongValue minus(short other) {
+    public ImmutableLong minus(short other) {
         return new ImmutableLong(this.value - other);
     }
     
     @Override
-    public LongValue minus(int other) {
+    public ImmutableLong minus(int other) {
         return new ImmutableLong(this.value - other);
     }
     
     @Override
-    public LongValue minus(long other) {
+    public ImmutableLong minus(long other) {
         return new ImmutableLong(this.value - other);
     }
     
     @Override
-    public LongValue multiply(byte other) {
+    public ImmutableLong multiply(byte other) {
         return new ImmutableLong(this.value * other);
     }
     
     @Override
-    public LongValue multiply(short other) {
+    public ImmutableLong multiply(short other) {
         return new ImmutableLong(this.value * other);
     }
     
     @Override
-    public LongValue multiply(int other) {
+    public ImmutableLong multiply(int other) {
         return new ImmutableLong(this.value * other);
     }
     
     @Override
-    public LongValue multiply(long other) {
+    public ImmutableLong multiply(long other) {
         return new ImmutableLong(this.value * other);
     }
     
     @Override
-    public LongValue divide(byte other) {
+    public ImmutableLong divide(byte other) {
         return new ImmutableLong(this.value / other);
     }
     
     @Override
-    public LongValue divide(short other) {
+    public ImmutableLong divide(short other) {
         return new ImmutableLong(this.value / other);
     }
     
     @Override
-    public LongValue divide(int other) {
+    public ImmutableLong divide(int other) {
         return new ImmutableLong(this.value / other);
     }
     
     @Override
-    public LongValue divide(long other) {
+    public ImmutableLong divide(long other) {
         return new ImmutableLong(this.value / other);
     }
     

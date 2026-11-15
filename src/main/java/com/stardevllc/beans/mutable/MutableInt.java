@@ -26,73 +26,73 @@ public class MutableInt implements IntValue, MutableValue<Integer> {
     }
     
     @Override
-    public IntValue plus(byte other) {
+    public MutableInt plus(byte other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public IntValue plus(short other) {
+    public MutableInt plus(short other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public IntValue plus(int other) {
+    public MutableInt plus(int other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public IntValue minus(byte other) {
+    public MutableInt minus(byte other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public IntValue minus(short other) {
+    public MutableInt minus(short other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public IntValue minus(int other) {
+    public MutableInt minus(int other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public IntValue multiply(byte other) {
+    public MutableInt multiply(byte other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public IntValue multiply(short other) {
+    public MutableInt multiply(short other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public IntValue multiply(int other) {
+    public MutableInt multiply(int other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public IntValue divide(byte other) {
+    public MutableInt divide(byte other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public IntValue divide(short other) {
+    public MutableInt divide(short other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public IntValue divide(int other) {
+    public MutableInt divide(int other) {
         this.value /= other;
         return this;
     }

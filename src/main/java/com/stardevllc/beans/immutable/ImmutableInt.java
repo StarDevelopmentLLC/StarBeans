@@ -24,62 +24,62 @@ public final class ImmutableInt implements IntValue {
     }
     
     @Override
-    public IntValue plus(byte other) {
+    public ImmutableInt plus(byte other) {
         return new ImmutableInt(this.value + other);
     }
     
     @Override
-    public IntValue plus(short other) {
+    public ImmutableInt plus(short other) {
         return new ImmutableInt(this.value + other);
     }
     
     @Override
-    public IntValue plus(int other) {
+    public ImmutableInt plus(int other) {
         return new ImmutableInt(this.value + other);
     }
     
     @Override
-    public IntValue minus(byte other) {
+    public ImmutableInt minus(byte other) {
         return new ImmutableInt(this.value - other);
     }
     
     @Override
-    public IntValue minus(short other) {
+    public ImmutableInt minus(short other) {
         return new ImmutableInt(this.value - other);
     }
     
     @Override
-    public IntValue minus(int other) {
+    public ImmutableInt minus(int other) {
         return new ImmutableInt(this.value - other);
     }
     
     @Override
-    public IntValue multiply(byte other) {
+    public ImmutableInt multiply(byte other) {
         return new ImmutableInt(this.value * other);
     }
     
     @Override
-    public IntValue multiply(short other) {
+    public ImmutableInt multiply(short other) {
         return new ImmutableInt(this.value * other);
     }
     
     @Override
-    public IntValue multiply(int other) {
+    public ImmutableInt multiply(int other) {
         return new ImmutableInt(this.value * other);
     }
     
     @Override
-    public IntValue divide(byte other) {
+    public ImmutableInt divide(byte other) {
         return new ImmutableInt(this.value / other);
     }
     
     @Override
-    public IntValue divide(short other) {
+    public ImmutableInt divide(short other) {
         return new ImmutableInt(this.value / other);
     }
     
     @Override
-    public IntValue divide(int other) {
+    public ImmutableInt divide(int other) {
         return new ImmutableInt(this.value / other);
     }
     

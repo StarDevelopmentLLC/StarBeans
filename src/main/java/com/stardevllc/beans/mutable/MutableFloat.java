@@ -54,121 +54,121 @@ public class MutableFloat implements MutableValue<Float>, FloatValue {
     }
     
     @Override
-    public FloatValue plus(byte other) {
+    public MutableFloat plus(byte other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public FloatValue plus(short other) {
+    public MutableFloat plus(short other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public FloatValue plus(int other) {
+    public MutableFloat plus(int other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public FloatValue plus(long other) {
+    public MutableFloat plus(long other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public FloatValue plus(float other) {
+    public MutableFloat plus(float other) {
         this.value += other;
         return this;
     }
     
     @Override
-    public FloatValue minus(byte other) {
+    public MutableFloat minus(byte other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public FloatValue minus(short other) {
+    public MutableFloat minus(short other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public FloatValue minus(int other) {
+    public MutableFloat minus(int other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public FloatValue minus(long other) {
+    public MutableFloat minus(long other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public FloatValue minus(float other) {
+    public MutableFloat minus(float other) {
         this.value -= other;
         return this;
     }
     
     @Override
-    public FloatValue multiply(byte other) {
+    public MutableFloat multiply(byte other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public FloatValue multiply(short other) {
+    public MutableFloat multiply(short other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public FloatValue multiply(int other) {
+    public MutableFloat multiply(int other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public FloatValue multiply(long other) {
+    public MutableFloat multiply(long other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public FloatValue multiply(float other) {
+    public MutableFloat multiply(float other) {
         this.value *= other;
         return this;
     }
     
     @Override
-    public FloatValue divide(byte other) {
+    public MutableFloat divide(byte other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public FloatValue divide(short other) {
+    public MutableFloat divide(short other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public FloatValue divide(int other) {
+    public MutableFloat divide(int other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public FloatValue divide(long other) {
+    public MutableFloat divide(long other) {
         this.value /= other;
         return this;
     }
     
     @Override
-    public FloatValue divide(float other) {
+    public MutableFloat divide(float other) {
         this.value /= other;
         return this;
     }
